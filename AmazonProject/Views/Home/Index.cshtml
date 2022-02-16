@@ -5,7 +5,7 @@
 
 
 <h1>@ViewData["Title"]</h1>
-
+<!--Dynamically goes through the books and displays the five that were sent in for this page in the controller-->
 @foreach (Book b in Model.Books)
 {
     <div class="card card-outline-primary m-1 p-1">
@@ -26,7 +26,7 @@
     </div>
 }
 <br />
-<!--Bootstrap to send through the tag helper to each link -->
+<!--Bootstrap to send through the tag helper to each link  -->
 <div page-blah="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
      page-class="btn" page-class-normal="btn-outline-dark"
      page-class-selected="btn-primary" class="btn-group pull-right m-1">

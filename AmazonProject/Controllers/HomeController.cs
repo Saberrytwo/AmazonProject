@@ -22,7 +22,7 @@ namespace AmazonProject.Controllers
             var x = new BooksViewModel
             {
                 Books = repo.Books
-                .OrderBy(p => p.Title)
+                .OrderBy(p => p.Title) //This way it orders by title, and then displays the 10 per page that we want it to
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 

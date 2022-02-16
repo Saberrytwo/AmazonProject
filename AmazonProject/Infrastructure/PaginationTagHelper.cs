@@ -47,7 +47,7 @@ namespace AmazonProject.Infrastructure
                     tb.AddCssClass(PageClass);
                     tb.AddCssClass(i == PageBlah.CurrentPage ? PageClassSelected : PageClassNormal); //Bootstrap stuff added on for each link
                 }
-                tb.InnerHtml.Append(i.ToString());
+                tb.InnerHtml.Append(i.ToString()); //appends i (the new page number) to the new a tag it is creating
 
                 final.InnerHtml.AppendHtml(tb);
 
