@@ -1,21 +1,20 @@
 ﻿@{
 }
+@* Creates an easy to enumerate through type *@
+@model IEnumerable<string> 
 
-@model IEnumerable<string>
+<!--This creates all of the category filters for the different books-->
 
-<div class="card card-outline-primary m-1 p-1">
-    <!--Bootstrap changes to make it look prettier-->
-    <div class="bg-faded p-1">
-        <h4>
-            Title: @b.Title
-            <span class="btn" style="float:right">
-                <small>$@b.Price</small>
-            </span>
-        </h4>
-        <p>
-            <b>Author:</b> @b.Author
-        </p>
-    </div>
-    <div class="card-text p-1"><b>Publisher: </b>@b.Publisher       <b>Classification: </b>@b.Classification</div>
-    <div class="card-text p-1"><b>ISBN: </b>@b.Isbn <b>Page Count: </b>@b.PageCount</div>
+<div class="d-grid gap-2">
+    <a asp-controller="Home" asp-action="Index" asp-route-Category="" asp-route-pageNum="1" class="btn btn-outline-secondary">
+        Home
+    </a>
+    @foreach (string c in Model)
+    {
+        <a asp-controller="Home" asp-action="Index" asp-route-Category="@c" asp-route-pageNum="1" class="btn @(ViewBag.SelectedType == c ? "btn-primary" : 
+            "btn-outline-secondary")">@c</a>
+        <!--So now it is looking for the book category in there inside the controller-->
+    }
 </div>
+
+

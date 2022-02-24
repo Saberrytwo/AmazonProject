@@ -34,7 +34,12 @@ namespace AmazonProject
 
            });
             services.AddScoped<IAmazonProjectRepository, EFAmazonProjectRepository>(); //Each Httprequest gets its own repository object
+            services.AddRazorPages(); //Adds razor pages
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(); //Basically setting up the ability to use a session
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,14 +51,32 @@ namespace AmazonProject
 
             //tells the program to use the files in the wwwroot folder
             app.UseStaticFiles();
-
-
+            app.UseSession(); //Implement the use of session
             app.UseRouting();
 
+
+
             app.UseEndpoints(endpoints =>
-            {
+            {//endpoints are executed in order
+
+                endpoints.MapControllerRoute("categorypage",
+                "{Category}/Page{pageNum}",
+                 new { Controller = "Home", action = "Index" }); //This handles when they pass in the Category of books they want,
+                                                                 //which we want to handle first, so we have that endpoint first
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index", pageNum=1 });
+
+                endpoints.MapControllerRoute("category",
+                "{Category}",
+                new { Controller = "Home", action = "Index", pageNum = 1 });
+
 
                 endpoints.MapDefaultControllerRoute(); // Follows the  controller, then action, etc.
+
+                endpoints.MapRazorPages(); //Lets us use Razor Pages
             });
         }
     }

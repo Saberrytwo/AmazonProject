@@ -4,11 +4,10 @@
 @model BooksViewModel
 
 
-<h1>@ViewData["Title"]</h1>
 <!--Dynamically goes through the books and displays the five that were sent in for this page in the controller-->
 @foreach (Book b in Model.Books)
 {
-    <partial></partial>
+    <partial name="ProjectSummary" model="b"/>
 }
 <br />
 <!--Bootstrap to send through the tag helper to each link  -->
@@ -18,3 +17,4 @@
 
 </div>
 
+ 

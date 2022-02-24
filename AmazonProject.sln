@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonProject", "AmazonProject\AmazonProject.csproj", "{1FA6C85C-A279-45D7-B2D8-5D6D88F44315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmazonProject", "AmazonProject\AmazonProject.csproj", "{1FA6C85C-A279-45D7-B2D8-5D6D88F44315}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

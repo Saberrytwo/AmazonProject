@@ -1,0 +1,33 @@
+﻿@{
+}
+
+@model Book
+
+<!--Partial view for the book summary-->
+<div class="card card-outline-primary m-1 p-1">
+    <!--Bootstrap changes to make it look prettier-->
+    <div class="bg-light p-1">
+        <h4>
+            Title: @Model.Title        <span class="badge bg-info" style="float:right">$@Model.Price</span>
+        </h4>
+
+
+
+    </div>
+    <div class="p-1">
+        <b>Author:</b> @Model.Author
+    </div>
+    <div class="card-text p-1"><b>Publisher: </b>@Model.Publisher       <b>Category: </b>@Model.Category</div>
+    <div class="card-text p-1"><b>ISBN: </b>@Model.Isbn <b>Page Count: </b>@Model.PageCount</div>
+
+    <form method="post" asp-page="/Add">
+
+        <input type="hidden" asp-for="@Model.BookId" />
+        @*<input type="hidden" asp-for="@Model.Price" />*@
+        <input type="hidden" name="returnURL" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+        <span class="card-text">
+            <button type="submit" class="btn btn-success btn-sm float-end">Add to Cart</button>
+        </span>
+    </form>
+</div>
