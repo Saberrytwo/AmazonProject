@@ -34,10 +34,14 @@ namespace AmazonProject
 
            });
             services.AddScoped<IAmazonProjectRepository, EFAmazonProjectRepository>(); //Each Httprequest gets its own repository object
+            services.AddScoped<IBuyRepository, EFBuyRepository>();
+            
             services.AddRazorPages(); //Adds razor pages
 
             services.AddDistributedMemoryCache();
             services.AddSession(); //Basically setting up the ability to use a session
+            services.AddScoped<Cart>(x => SessionCart.GetCart(x));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Provides access to the HTTP context
         }
 
 

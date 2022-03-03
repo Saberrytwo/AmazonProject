@@ -20,5 +20,6 @@ namespace AmazonProject.Models
         }
 
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Buy> Buys { get; set; }
     }
 }

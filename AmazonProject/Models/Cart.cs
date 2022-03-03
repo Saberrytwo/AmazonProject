@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace AmazonProject.Models
     {
         public List<CartLineItem> Items { get; set; } = new List<CartLineItem>();
 
-        public void AddItem(Book bok, int qty)
+        public virtual void AddItem(Book bok, int qty)
         {
             CartLineItem line = Items
                 .Where(b => b.Book.BookId == bok.BookId)
@@ -27,7 +28,16 @@ namespace AmazonProject.Models
                 line.Quantity += qty;
             }
         }
-        public double CalculateTotal()
+        public virtual void RemoveItem(Book bok)
+        {
+            Items.RemoveAll(x => x.Book.BookId == bok.BookId);
+
+        }
+        public virtual void ClearCart()
+        {
+            Items.Clear();
+        }
+        public double CalculateTotal() //Virtual allows it to be overwritten
         {
             double sum = (double)Items.Sum(x => x.Quantity * x.Book.Price); //Had to go to x.Book.Price
 
@@ -38,6 +48,7 @@ namespace AmazonProject.Models
     
     public class CartLineItem
     {
+        [Key]
         public int LineID { get; set; }
         public Book Book { get; set; }
         public int Quantity { get; set; }
