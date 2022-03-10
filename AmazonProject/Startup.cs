@@ -42,6 +42,9 @@ namespace AmazonProject
             services.AddSession(); //Basically setting up the ability to use a session
             services.AddScoped<Cart>(x => SessionCart.GetCart(x));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Provides access to the HTTP context
+
+            services.AddServerSideBlazor(); //To be able to use blazor pages
+            services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
         }
 
 
@@ -81,6 +84,10 @@ namespace AmazonProject
                 endpoints.MapDefaultControllerRoute(); // Follows the  controller, then action, etc.
 
                 endpoints.MapRazorPages(); //Lets us use Razor Pages
+
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index"); //If it can't find a page that is linked/doesn't need anything, go to this page -- index
+
             });
         }
     }

@@ -1,0 +1,39 @@
+﻿@inherits LayoutComponentBase
+@*This is how you inherit in .razor files^^*@
+
+<style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: grey;
+        color: black;
+        text-align: center;
+        height: 20px;
+    }
+</style>
+<div class="bg-info text-white p-2">
+    <span class="navbar-brand m-lg-2">AMAZON 2.0 - Administration</span>
+
+
+</div>
+<div class="container-fluid">
+    <div class="row p-2">
+        <div class="col-3">
+            <div class="d-grid p-2">
+                <NavLink class="btn btn-outline-primary" href="/admin/books" ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Books</NavLink>
+                <NavLink class="btn btn-outline-primary" href="/admin/orders" ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Orders</NavLink>
+            </div>
+            
+        </div>
+        <div class="col">
+            @*this will fill the rest of the columns*@
+            @Body
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p>Sticky Footer Stuff</p>
+</div>
+
