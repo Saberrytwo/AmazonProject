@@ -1,4 +1,8 @@
 ﻿@page "/admin"
+
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
 @model AmazonProject.Pages.Admin.IndexModel
 
 @{
@@ -9,7 +13,7 @@
 <html>
 
 <head>
-    <title>Water Project Admin</title>
+    <title>AMAZON 2.0 Admin</title>
 
     <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
     <base href="/" />

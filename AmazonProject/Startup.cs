@@ -96,6 +96,7 @@ namespace AmazonProject
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index"); //If it can't find a page that is linked/doesn't need anything, go to this page -- index
 
             });
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

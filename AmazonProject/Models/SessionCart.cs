@@ -33,5 +33,10 @@ namespace AmazonProject.Models
             Session.Remove("Cart");
 
         }
+        public override void ClearCart()
+        {
+            base.ClearCart();
+            Session.Remove("Cart");
+        }
     }
 }
