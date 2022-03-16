@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using AmazonProject.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace AmazonProject
 {
@@ -27,12 +28,16 @@ namespace AmazonProject
             services.AddControllersWithViews();
 
             services.AddDbContext<BookstoreContext>(options =>
-           {
+            {
        
 
                options.UseSqlite(Configuration["ConnectionStrings:BookstoreDBConnection"]);
 
-           });
+            });
+            services.AddDbContext<AppIdentityDBContext>(options =>
+                options.UseSqlite(Configuration["ConnectionStrings:IdentityConnection"]));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDBContext>();
+
             services.AddScoped<IAmazonProjectRepository, EFAmazonProjectRepository>(); //Each Httprequest gets its own repository object
             services.AddScoped<IBuyRepository, EFBuyRepository>();
             
@@ -61,6 +66,8 @@ namespace AmazonProject
             app.UseSession(); //Implement the use of session
             app.UseRouting();
 
+            app.UseAuthentication(); //Implements the identity stuff we need for loggin in
+            app.UseAuthorization();
 
 
             app.UseEndpoints(endpoints =>
